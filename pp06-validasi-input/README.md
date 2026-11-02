@@ -16,20 +16,12 @@
 
 ## 1. Peer Review
 
-**Nama peninjau:** [Isi nama teman yang melakukan peer review]  
+**Nama peninjau:** Muhammad Ivanda Stevhany  
 **Nama pemilik form:** Nur Adli Rosyadan
 
 Peer review dilakukan untuk mengevaluasi kemudahan penggunaan dan validasi pada `FormAnggotaPerpustakaan`.
 
-### Temuan, Perbaikan, dan Commit
-
-| No. | Temuan dari teman | Perbaikan yang dilakukan | Commit |
-|---|---|---|---|
-| 1 | [Tuliskan temuan sesuai lembar peer review] | [Tuliskan perbaikan yang benar-benar dilakukan] | `[Hash/pesan commit]` |
-| 2 | [Tuliskan temuan sesuai lembar peer review] | [Tuliskan perbaikan yang benar-benar dilakukan] | `[Hash/pesan commit]` |
-| 3 | [Tuliskan temuan sesuai lembar peer review] | [Tuliskan perbaikan yang benar-benar dilakukan] | `[Hash/pesan commit]` |
-
-> **Catatan:** Lengkapi tabel berdasarkan lembar peer review asli dan riwayat Git. Jangan menggunakan contoh temuan atau commit yang tidak benar-benar terjadi.
+<img width="844" height="1280" alt="7cddde1d-58be-4d26-a7d1-6e6ba9e5039d" src="https://github.com/user-attachments/assets/9ee83a37-e076-4391-bbfa-fd52e9b2581c" />
 
 ### Lembar Peer Review
 
