@@ -23,11 +23,6 @@ Peer review dilakukan untuk mengevaluasi kemudahan penggunaan dan validasi pada 
 
 <img width="844" height="1280" alt="7cddde1d-58be-4d26-a7d1-6e6ba9e5039d" src="https://github.com/user-attachments/assets/9ee83a37-e076-4391-bbfa-fd52e9b2581c" />
 
-### Lembar Peer Review
-
-Lampirkan foto atau hasil pindai lembar peer review dari teman pada bagian ini.
-
-`[Tambahkan foto/pindaian lembar peer review di sini]`
 
 ---
 
