@@ -1,0 +1,17 @@
+PROJECT DAFTAR BELANJA - FRAME FORM NETBEANS
+
+Perbaikan percobaan:
+- Menghapus metadata layout yang tidak dikenal yang dapat menyebabkan Design gagal dimuat.
+- FormDaftarBelanja.form tetap menjadi pasangan FormDaftarBelanja.java.
+
+Cara mencoba:
+1. Tutup tab FormDaftarBelanja.java di NetBeans.
+2. Ekstrak ZIP ini ke folder baru (jangan timpa project yang sedang terbuka).
+3. NetBeans > File > Open Project > pilih folder p08-uts-b.
+4. Tunggu Maven selesai memuat dependency.
+5. Buka FormDaftarBelanja.java lalu pilih tab Design.
+
+Jika masih muncul dialog Error:
+- Catat versi NetBeans (Help > About).
+- Buka View > IDE Log atau lihat file userdir/var/log/messages.log untuk pesan detail.
+- Kirim pesan error/log tersebut agar format .form bisa disesuaikan.
