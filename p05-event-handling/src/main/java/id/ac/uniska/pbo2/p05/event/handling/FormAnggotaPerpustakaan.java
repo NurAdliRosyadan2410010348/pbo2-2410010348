@@ -5,6 +5,7 @@
 package id.ac.uniska.pbo2.p05.event.handling;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,8 +67,13 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         batalButton = new javax.swing.JButton();
         daftarButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Form Anggota Perpustakaan");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 16, 8, 16));
         headerPanel.setLayout(new javax.swing.BoxLayout(headerPanel, javax.swing.BoxLayout.PAGE_AXIS));
@@ -133,6 +139,11 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         dataPanel.add(npmField, gridBagConstraints);
 
         namaField.setMargin(new java.awt.Insets(1, 3, 1, 3));
+        namaField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                npmFieldKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -248,6 +259,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         persetujuanPanel.add(jLabel12, java.awt.BorderLayout.PAGE_START);
 
         sayaSetyjuCheck.setText("Saya setuju dengan Tata tertib Perpustakaan");
+        sayaSetyjuCheck.addItemListener(this::sayaSetyjuCheckItemStateChanged);
         persetujuanPanel.add(sayaSetyjuCheck, java.awt.BorderLayout.CENTER);
 
         isiPanel.add(persetujuanPanel, java.awt.BorderLayout.PAGE_END);
@@ -258,9 +270,12 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         tombolPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 8, 5));
 
         batalButton.setText("Batal");
+        batalButton.addActionListener(this::batalButtonActionPerformed);
         tombolPanel.add(batalButton);
 
         daftarButton.setText("Daftar");
+        daftarButton.setEnabled(false);
+        daftarButton.addActionListener(this::daftarButtonActionPerformed);
         tombolPanel.add(daftarButton);
 
         getContentPane().add(tombolPanel, java.awt.BorderLayout.PAGE_END);
@@ -269,12 +284,94 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dosenRbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosenRbActionPerformed
-        // TODO add your handling code here:
+        // Pilihan jenis anggota ditangani oleh ButtonGroup.
     }//GEN-LAST:event_dosenRbActionPerformed
 
     private void umuumRbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_umuumRbActionPerformed
-        // TODO add your handling code here:
+        // Pilihan jenis anggota ditangani oleh ButtonGroup.
     }//GEN-LAST:event_umuumRbActionPerformed
+
+    private void sayaSetyjuCheckItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sayaSetyjuCheckItemStateChanged
+        // Tombol Daftar aktif hanya ketika persetujuan dicentang.
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            daftarButton.setEnabled(true);
+        } else {
+            daftarButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_sayaSetyjuCheckItemStateChanged
+
+    private void batalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalButtonActionPerformed
+        kosongkanForm();
+    }//GEN-LAST:event_batalButtonActionPerformed
+
+    private void daftarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarButtonActionPerformed
+        tampilkanRingkasan();
+    }//GEN-LAST:event_daftarButtonActionPerformed
+
+    private void npmFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_npmFieldKeyReleased
+        String npm = npmField.getText().trim();
+        long jumlahDigit = npm.chars().filter(Character::isDigit).count();
+        jLabel2.setText(jumlahDigit + " dari 10 digit");
+    }//GEN-LAST:event_npmFieldKeyReleased
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int jawab = JOptionPane.showConfirmDialog(
+                this,
+                "Keluar dari aplikasi?",
+                "Konfirmasi",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (jawab == JOptionPane.YES_OPTION) {
+            dispose();
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    /** Mengosongkan seluruh isian dan mengembalikan fokus ke NPM. */
+    private void kosongkanForm() {
+        npmField.setText("");
+        namaField.setText("");
+        programStudiCombo.setSelectedIndex(0);
+        jenisAnggotaButtonGroup.clearSelection();
+        emailField.setText("");
+        hpField.setText("");
+        alamatArea.setText("");
+        sayaSetyjuCheck.setSelected(false);
+        daftarButton.setEnabled(false);
+        jLabel2.setText("Silahkan Isi data");
+        npmField.requestFocusInWindow();
+    }
+
+    /** Menampilkan ringkasan data anggota yang dimasukkan. */
+    private void tampilkanRingkasan() {
+        String jenisAnggota;
+        if (mahasiswaRb.isSelected()) {
+            jenisAnggota = "Mahasiswa";
+        } else if (dosenRb.isSelected()) {
+            jenisAnggota = "Dosen";
+        } else if (umuumRb.isSelected()) {
+            jenisAnggota = "Umum";
+        } else {
+            jenisAnggota = "Belum dipilih";
+        }
+
+        String ringkasan = "RINGKASAN PENDAFTARAN ANGGOTA PERPUSTAKAAN\n\n"
+                + "NPM: " + npmField.getText().trim() + "\n"
+                + "Nama: " + namaField.getText().trim() + "\n"
+                + "Program Studi: " + programStudiCombo.getSelectedItem() + "\n"
+                + "Jenis Anggota: " + jenisAnggota + "\n"
+                + "Email: " + emailField.getText().trim() + "\n"
+                + "Nomor HP: " + hpField.getText().trim() + "\n"
+                + "Alamat: " + alamatArea.getText().trim();
+
+        JOptionPane.showMessageDialog(
+                this,
+                ringkasan,
+                "Ringkasan Pendaftaran",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+    }
 
     /**
      * @param args the command line arguments

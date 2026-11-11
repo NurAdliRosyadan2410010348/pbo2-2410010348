@@ -1,5 +1,5 @@
 
-package id.ac.uniska.pbo2.p05;
+package id.ac.uniska.pbo2.p05.event.handling;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.event.ItemEvent;

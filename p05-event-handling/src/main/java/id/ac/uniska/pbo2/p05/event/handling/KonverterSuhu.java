@@ -1,4 +1,4 @@
-package id.ac.uniska.pbo2.p05;
+package id.ac.uniska.pbo2.p05.event.handling;
 
 public final class KonverterSuhu {
     private KonverterSuhu() {
